@@ -10,13 +10,16 @@ const express = require("express"),
 	Comment = require("./models/comment"),
 	User = require("./models/user"),
 	seedDB = require("./seed");
+require('dotenv').config();
 
 //Routes for other files
 const commentRoutes = require("./routes/comments"),
 	campgroundRoutes = require("./routes/campgrounds"),
 	indexRoutes = require("./routes/index");
 
-mongoose.connect('mongodb://localhost/yelp_camp', {
+const passkey = process.env.MYPASSTHROUGH;
+
+mongoose.connect('mongodb+srv://devckk:passkey@cluster0-ld1j0.mongodb.net/test?retryWrites=true&w=majority', {
 	useNewUrlParser: true,
 }).then(() => {
 	console.log('Connected to DB');
