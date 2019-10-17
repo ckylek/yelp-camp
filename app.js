@@ -64,6 +64,6 @@ app.use(indexRoutes);
 
 
 
-app.listen(3000, ()=> {
-	console.log("YelpCamp Server has started.");
+app.listen(3000 || process.env.PORT, ()=> {
+	console.log("Server Has Started");
 });
