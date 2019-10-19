@@ -11,7 +11,6 @@ const express = require("express"),
 	User = require("./models/user"),
 	seedDB = require("./seed");
 require('dotenv').config();
-console.log(process.env);
 
 //Routes for other files
 const commentRoutes = require("./routes/comments"),
