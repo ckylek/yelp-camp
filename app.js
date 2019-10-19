@@ -11,6 +11,7 @@ const express = require("express"),
 	User = require("./models/user"),
 	seedDB = require("./seed");
 require('dotenv').config();
+console.log(process.env);
 
 //Routes for other files
 const commentRoutes = require("./routes/comments"),
@@ -19,7 +20,7 @@ const commentRoutes = require("./routes/comments"),
 
 const passkey = process.env.MYPASSTHROUGH;
 
-mongoose.connect('mongodb+srv://devckk:passkey@cluster0-ld1j0.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://devckk:passkey@cluster0-ld1j0.mongodb.net/test?retryWrites=true&w=majorit.git', {
 	useNewUrlParser: true,
 }).then(() => {
 	console.log('Connected to DB');
