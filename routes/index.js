@@ -37,17 +37,11 @@ router.get("/login", function(req, res){
 	res.render("login.ejs");
 });
 
-router.post("/login", function(req, res) {
-	if(err) {
-		req.flash("error",("Babes, are you sure you put in the right password" + err.message));
-		failureRedirect:"/login"
-	}
-	passport.authenticate("local", function(req, res){
-		req.flash("success", "You have successfully signed in");
+router.post("/login", passport.authenticate("local", 
+	{
 		successRedirect: "/campgrounds",
-		
-	}), 
-	
+		failureRedirect:"/login"
+	}), function(req, res){
 });
 
 //logout route
