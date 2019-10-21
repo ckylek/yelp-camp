@@ -19,8 +19,9 @@ const commentRoutes = require("./routes/comments"),
 
 const passkey = process.env.MYPASSTHROUGH;
 
-mongoose.connect('mongodb+srv://devckk:passkey@cluster0-ld1j0.mongodb.net/test?retryWrites=true&w=majorit.git', {
-	useNewUrlParser: true,
+// mongoose.connect('mongodb://localhost/yelp_camp', {
+mongoose.connect('mongodb+srv://devckk:VAKpiJyUpCjAPtHA@cluster0-ld1j0.mongodb.net/test?retryWrites=true&w=majorit.git', {
+	useNewUrlParser: true, 
 }).then(() => {
 	console.log('Connected to DB');
 }).catch(err => {
@@ -67,6 +68,7 @@ app.use(indexRoutes);
 
 
 
-app.listen(process.env.PORT || 3000, ()=> {
-	console.log("Server Has Started");
+const port = process.env.PORT || 3000;
+app.listen(port, function () {
+    console.log("The YelpCamp Server Has Started!");
 });
