@@ -18,9 +18,10 @@ const commentRoutes = require("./routes/comments"),
 	indexRoutes = require("./routes/index");
 
 const passkey = process.env.MYPASSTHROUGH;
+// console.log(passkey);
 
 // mongoose.connect('mongodb://localhost/yelp_camp', {
-mongoose.connect('mongodb+srv://devckk:VAKpiJyUpCjAPtHA@cluster0-ld1j0.mongodb.net/test?retryWrites=true&w=majorit.git', {
+mongoose.connect('mongodb+srv://devckk:VAKpiJyUpCjAPtHA@cluster0-ld1j0.mongodb.net/test?retryWrites=true&w=majority', {
 	useNewUrlParser: true, 
 }).then(() => {
 	console.log('Connected to DB');
