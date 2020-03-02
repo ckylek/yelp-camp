@@ -17,11 +17,10 @@ const commentRoutes = require("./routes/comments"),
 	campgroundRoutes = require("./routes/campgrounds"),
 	indexRoutes = require("./routes/index");
 
-const passkey = process.env.MYPASSTHROUGH;
-// console.log(passkey);
 
-// mongoose.connect('mongodb://localhost/yelp_camp', {
-mongoose.connect('mongodb+srv://devckk:VAKpiJyUpCjAPtHA@cluster0-ld1j0.mongodb.net/test?retryWrites=true&w=majority', {
+
+const url = process.env.DATABASEURL || 'mongodb://localhost/yelp_camp';
+mongoose.connect(url, {
 	useNewUrlParser: true, 
 }).then(() => {
 	console.log('Connected to DB');
