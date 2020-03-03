@@ -13,15 +13,16 @@ const seedDB = require("./seed");
 require('dotenv').config();
 
 //Routes for other files
-const commentRoutes = require("./routes/comments"),
-const campgroundRoutes = require("./routes/campgrounds"),
+const commentRoutes = require("./routes/comments");
+const campgroundRoutes = require("./routes/campgrounds");
 const indexRoutes = require("./routes/index");
 
 
 
 const url = process.env.DATABASEURL || 'mongodb://localhost/yelp_camp';
 mongoose.connect(url, {
-	useNewUrlParser: true, 
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
 }).then(() => {
 	console.log('Connected to DB');
 }).catch(err => {
@@ -36,8 +37,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
-
-// seedDB();//This will create teh default campgrounds and comments from seed.js
+//This will create the default campgrounds and comments from seed.js
+// seedDB();
 
 //Passport Configuration
 app.use(require("express-session")({

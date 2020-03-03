@@ -1,8 +1,8 @@
-var mongoose = require("mongoose"),
-	Campground = require("./models/campground"),
-	Comment = require("./models/comment");
+const mongoose = require("mongoose");
+const Campground = require("./models/campground");
+const Comment = require("./models/comment");
 
-var data = [
+const data = [
 	{
 		name: "Big Bend National Park", 
 		image: "https://www.nps.gov/bibe/planyourvisit/images/IMG_5417.JPG",
@@ -19,39 +19,23 @@ var data = [
 ]
 
 
-function seedDB(){
+const seedDB = async() => {
 	//Remove all campgrounds
-	Campground.remove({}, function(err){
-		if(err){
-			console.log(err);
-		} else {
-			console.log("removed selected campgrounds.");
-		}
-		// data.forEach(function(seed){
-		// 	//Create Campground
-		// Campground.create(seed, function(err, data){
-		// 	if(err){
-		// 		console.log(err);
-		// 	} else {
-		// 		console.log("added campground");
-		// 		//create a comment
-		// 		Comment.create(
-		// 			{
-		// 				text:"This place is great, but I wish there was internet",
-		// 				author: "Homer"
-		// 			}, function(err, comment){
-		// 				if(err){
-		// 					console.log(err);
-		// 				} else {
-		// 					data.comments.push(comment);
-		// 					data.save();
-		// 					console.log("Create new comment");
-		// 				}
-		// 			}
-		// 		)
-		// 	}
-		// })
-	})	
+	await Campground.deleteMany({});
+	await Comment.deleteMany({});
+	console.log("removed campgrounds!");
+	for (const seed of data) {
+		const campground = await Campground.create(seed);
+		console.log("added campground");
+		//create a comment
+		const comment = await Comment.create({
+				text:"This place is great, but I wish there was 				internet",
+				author: "Homer"
+			});
+		console.log("Create new comment");
+		campground.comments.push(comment);
+		campground.save();
+	}
 }
 
 module.exports = seedDB;
