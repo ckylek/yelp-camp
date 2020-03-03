@@ -1,21 +1,21 @@
-const express = require("express"),
-	app = express(),
-	bodyParser = require("body-parser"),
-	mongoose = require("mongoose"),
-	passport = require("passport"),
-	LocalStrategy = require("passport-local"),
-	methodOverride = require("method-override"),
-	flash = require("connect-flash"),
-	Campground = require("./models/campground"),
-	Comment = require("./models/comment"),
-	User = require("./models/user"),
-	seedDB = require("./seed");
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const methodOverride = require("method-override");
+const flash = require("connect-flash");
+const Campground = require("./models/campground");
+const Comment = require("./models/comment");
+const User = require("./models/user");
+const seedDB = require("./seed");
 require('dotenv').config();
 
 //Routes for other files
 const commentRoutes = require("./routes/comments"),
-	campgroundRoutes = require("./routes/campgrounds"),
-	indexRoutes = require("./routes/index");
+const campgroundRoutes = require("./routes/campgrounds"),
+const indexRoutes = require("./routes/index");
 
 
 
