@@ -1,30 +1,31 @@
-var express = require("express"),
-	router = express.Router(),
-	passport = require("passport"),
-	User = require("../models/user");
+const express = require("express");
+const router = express.Router();
+const passport = require("passport");
+const User = require("../models/user");
 
 //===============================
 //Authentication ROUTES
 //===============================
 
 //Rooot Route
-router.get("/", function(req, res){
+router.get("/", (req, res) => {
 	res.render("landings.ejs");
 });
 
 //show register form
-router.get("/register", function(req,res){
+router.get("/register", (req,res) => {
 	res.render("register.ejs");
 });
+
 //handle sign up logic
-router.post("/register", function(req, res){
-	var newUser = new User({username: req.body.username});
-	User.register(newUser, req.body.password, function(err, user){
+router.post("/register", (req, res) => {
+	const newUser = new User({username: req.body.username});
+	User.register(newUser, req.body.password, (err, user) => {
 		if(err){
 			req.flash("error",(err.message));
 			return res.render("register.ejs");
 		}
-		passport.authenticate("local")(req, res, function(){
+		passport.authenticate("local")(req, res, () => {
 			req.flash("success", "Welcome to YelpCamp " + user.username);
 			res.redirect("/campgrounds");
 		});
@@ -33,7 +34,7 @@ router.post("/register", function(req, res){
 
 
 //show the login page
-router.get("/login", function(req, res){
+router.get("/login", (req, res) => {
 	res.render("login.ejs");
 });
 
@@ -41,21 +42,21 @@ router.post("/login", passport.authenticate("local",
 	{
 		successRedirect: "/campgrounds",
 		failureRedirect:"/login"
-	}), function(req, res){
+	}), (req, res) => {
 });
 
 //logout route
-router.get("/logout", function(req, res){
+router.get("/logout", (req, res) => {
 	req.logout();
 	req.flash("error", "You have logged out")
 	res.redirect("/campgrounds")
 });
 
-function isLoggedIn(req, res, next){
-	if(req.isAuthenticated()){
-		return next();
-	}
-	res.redirect("/login")
-}
+// function isLoggedIn(req, res, next){
+// 	if(req.isAuthenticated()){
+// 		return next();
+// 	}
+// 	res.redirect("/login")
+// }
 
 module.exports = router;
