@@ -10,7 +10,7 @@ const { asyncMiddleware, isLoggedIn, checkCampgroundOwnership } = require("../mi
 router.get("/", asyncMiddleware(async (req, res, next) => {
 	//Get all campgrounds from DB
 	let allCampgrounds = await Campground.find({})
-	res.render("campgrounds/index.ejs",{campgrounds:allCampgrounds, currentUser: req.user});
+	res.render("campgrounds/index.ejs",{campgrounds:allCampgrounds, page: 'campgrounds', currentUser: req.user});
 }))
 
 //Create - add new campground to DB
@@ -29,7 +29,7 @@ router.post("/", isLoggedIn, asyncMiddleware(async (req, res) => {
 	//Create a new campground and save to database
 	let newlyCreated = await Campground.create(newCampground)
 		console.log(newlyCreated);
-		sres.redirect("/campgrounds");
+		res.redirect("/campgrounds");
 }))
 
 //NEW - create a new campground

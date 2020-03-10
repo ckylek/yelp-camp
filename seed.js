@@ -24,18 +24,18 @@ const seedDB = async() => {
 	await Campground.deleteMany({});
 	await Comment.deleteMany({});
 	console.log("removed campgrounds!");
-	for (const seed of data) {
-		const campground = await Campground.create(seed);
-		console.log("added campground");
-		//create a comment
-		const comment = await Comment.create({
-				text:"This place is great, but I wish there was 				internet",
-				author: "Homer"
-			});
-		console.log("Create new comment");
-		campground.comments.push(comment);
-		campground.save();
-	}
+	// for (const seed of data) {
+	// 	const campground = await Campground.create(seed);
+	// 	console.log("added campground");
+	// 	//create a comment
+	// 	const comment = await Comment.create({
+	// 			text:"This place is great, but I wish there was 				internet",
+	// 			author: "Homer"
+	// 		});
+	// 	console.log("Create new comment");
+	// 	campground.comments.push(comment);
+	// 	campground.save();
+	//}
 }
 
 module.exports = seedDB;

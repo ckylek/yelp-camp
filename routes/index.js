@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 
 //show register form
 router.get("/register", (req,res) => {
-	res.render("register.ejs");
+	res.render("register.ejs", {page: 'register'});
 });
 
 //handle sign up logic
@@ -22,11 +22,11 @@ router.post("/register", (req, res) => {
 	const newUser = new User({username: req.body.username});
 	User.register(newUser, req.body.password, (err, user) => {
 		if(err){
-			req.flash("error",(err.message));
-			return res.render("register.ejs");
+    		console.log(err);
+    		return res.render("register.ejs", {error: err.message});
 		}
 		passport.authenticate("local")(req, res, () => {
-			req.flash("success", "Welcome to YelpCamp " + user.username);
+			req.flash("success", "Welcome to YelpCamp " + req.body.username);
 			res.redirect("/campgrounds");
 		});
 	});
@@ -35,7 +35,7 @@ router.post("/register", (req, res) => {
 
 //show the login page
 router.get("/login", (req, res) => {
-	res.render("login.ejs");
+	res.render("login.ejs", {page: 'login'});
 });
 
 router.post("/login", passport.authenticate("local", 

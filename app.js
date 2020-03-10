@@ -10,7 +10,7 @@ const Campground = require("./models/campground");
 const Comment = require("./models/comment");
 const User = require("./models/user");
 const seedDB = require("./seed");
-require('dotenv').config();
+// require('dotenv').config();
 
 //Routes for other files
 const commentRoutes = require("./routes/comments");
@@ -37,8 +37,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
-//This will create the default campgrounds and comments from seed.js
-// seedDB();
+
+// seedDB(); //This will create the default campgrounds and comments from seed.js
 
 //Passport Configuration
 app.use(require("express-session")({
